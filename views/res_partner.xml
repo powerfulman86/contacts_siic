@@ -8,6 +8,10 @@
             <field name="inherit_id" ref="product.view_partner_property_form"/>
             <field name="arch" type="xml">
 
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="financial_file"/>
+                </xpath>
+
                 <xpath expr="//field[@name='property_product_pricelist']" position="after">
                     <field name="customer_category_id"/>
                 </xpath>

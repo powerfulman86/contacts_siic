@@ -9,6 +9,7 @@ class ResPartner(models.Model):
 
     customer_category_id = fields.Many2one(comodel_name="res.partner.category", string="Category", required=False, )
     delivery_company = fields.Boolean(string="Delivery Company", default=False)
+    financial_file = fields.Char(string="Financial File", required=False, )
 
     @api.onchange('is_company')
     def _reset_delivery_company(self):
