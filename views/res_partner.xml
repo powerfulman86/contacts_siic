@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="partner_customer_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.customer.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="product.view_partner_property_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='property_product_pricelist']" position="after">
+                    <field name="customer_category_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='ref']" position="before">
+                    <field name="delivery_company" attrs="{'invisible': [('is_company','=',False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="partner_category_search_view" model="ir.ui.view">
+            <field name="name">partner.category.search</field>
+            <field name="model">res.partner.category</field>
+            <field name="arch" type="xml">
+                <search string="Customer Categories">
+                    <field name="name" string="partner Categories"/>
+                    <field name="parent_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="partner_category_form_view" model="ir.ui.view">
+            <field name="name">partner.category.form</field>
+            <field name="model">res.partner.category</field>
+            <field name="arch" type="xml">
+                <form class="oe_form_configuration">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Category name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Lamps"/>
+                            </h1>
+                        </div>
+                        <group name="first" col="2">
+                            <field name="parent_id" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <group string="Cash Discount">
+                                <field name="discount_cash"/>
+                                <field name="discount_type" attrs="{'invisible': [('discount_cash', '!=', True)]}"/>
+                                <field name="discount_cash_value"
+                                       attrs="{'invisible': [('discount_cash', '!=', True)]}"/>
+                            </group>
+
+                            <group string="Extra Discount">
+                                <field name="discount_extra"/>
+                                <field name="discount_extra_type"/>
+                                <field name="discount_extra_value"
+                                       attrs="{'invisible': [('discount_extra_type', '!=', '1')]}"/>
+                            </group>
+
+                            <group string="Commercial Discount">
+                                <field name="discount_commercial"/>
+                                <field name="discount_commercial_type"
+                                       attrs="{'invisible': [('discount_commercial', '!=', True)]}"/>
+                                <field name="discount_commercial_value"
+                                       attrs="{'invisible': [('discount_commercial', '!=', True)]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="partner_category_list_view" model="ir.ui.view">
+            <field name="name">partner.category.list</field>
+            <field name="model">res.partner.category</field>
+            <field name="arch" type="xml">
+                <tree string="Customer Categories">
+                    <field name="display_name" string="partner Category"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_partner_category" model="ir.actions.act_window">
+            <field name="name">Customer Categories</field>
+            <field name="res_model">res.partner.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Partner category
+                </p>
+                <p>
+                    Here you can access all categories for the lunch Partners.
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_partner_category"
+                  name="Customer Category"
+                  parent="sale.menu_sale_config"
+                  action="action_partner_category"/>
+
+    </data>
+</odoo>
