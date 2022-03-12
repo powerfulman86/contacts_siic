@@ -10,6 +10,10 @@ class ResPartner(models.Model):
     customer_category_id = fields.Many2one(comodel_name="res.partner.category", string="Category", required=False, )
     delivery_company = fields.Boolean(string="Delivery Company", default=False)
     financial_file = fields.Char(string="Financial File", required=False, )
+    shipping_type = fields.Selection(string="Shipping Type",
+                                     selection=[('bycompany', 'By Company'), ('byclient', 'By Client'),
+                                                ('noshipping', 'No Shipping'), ],
+                                     required=False, default='bycompany')
 
     @api.onchange('is_company')
     def _reset_delivery_company(self):
